@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compound Login Interface</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      width: 350px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    /* 👁️ Eye icon styling */
+    .eye-icon {
+      position: absolute;
+      right: 12px;
+      top: 37px;
+      cursor: pointer;
+      font-size: 18px;
+      user-select: none;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      margin: 10px 0;
+    }
+
+    .options a {
+      text-decoration: none;
+      color: #4a90e2;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: #4a90e2;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #357ABD;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .signup-link a {
+      color: #4a90e2;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">Username or Email</label>
+        <input type="text" id="username" placeholder="Enter username or email" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+        <span class="eye-icon" id="togglePassword">👁️</span>
+      </div>
+      <div class="options">
+        <label>
+          <input type="checkbox"> Remember Me
+        </label>
+        <a href="forgot-password.html">Forgot Password?</a>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+      <div class="signup-link">
+        Don't have an account? <a href="signup.html">Sign Up</a>
+      </div>
+      <div id="errorMessage" class="error"></div>
+    </form>
+  </div>
+
+  <script>
+    // 👁️ Toggle password visibility with eye icon
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordField = document.getElementById("password");
+
+    togglePassword.addEventListener("click", function() {
+      const type = passwordField.type === "password" ? "text" : "password";
+      passwordField.type = type;
+
+      // Swap icon
+      this.textContent = type === "password" ? "👁️" : "🙈";
+    });
+
+    // ✅ Login Authentication
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const errorMsg = document.getElementById("errorMessage");
+
+      const correctUsername = "Avneesh";
+      const correctPassword = "Brownie_X_Commerce";
+
+      if (username === correctUsername && password === correctPassword) {
+        window.location.href = "homepage.html"; // Redirect if correct
+      } else {
+        errorMsg.textContent = "Invalid username or password!";
+      }
+    });
+  </script>
+</body>
+</html>
